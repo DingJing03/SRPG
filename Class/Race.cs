@@ -5,7 +5,12 @@ using System.Text;
 
 namespace Class
 {
-    public class Class1
+    public class Race : Role
     {
+        public Role initRole()
+        {
+            return this;
+        }
+
     }
 }
