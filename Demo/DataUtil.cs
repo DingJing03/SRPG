@@ -148,7 +148,16 @@ public class DbAccess
         query += ")";
         return ExecuteQuery(query);
     }
-
+    public SqliteDataReader CreateTable(string name, string[] col)
+    {
+        string query = "CREATE TABLE " + name + " (" + col[0];
+        for (int i = 1; i < col.Length; ++i)
+        {
+            query += ", " + col[i];
+        }
+        query += ")";
+        return ExecuteQuery(query);
+    }
     public SqliteDataReader SelectWhere(string tableName, string[] items, string[] col, string[] operation, string[] values)
     {
         if (col.Length != operation.Length || operation.Length != values.Length) {
