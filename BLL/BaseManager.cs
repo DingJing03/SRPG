@@ -1,7 +1,7 @@
 ﻿using System;
 using DAL.Base;
 using Mono.Data.Sqlite;
-using Model.Base;
+using Model.Table;
 using System.Collections;
 
 namespace DAL

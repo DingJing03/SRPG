@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Base\Biont.cs" />
     <Compile Include="Base\Cell.cs" />
-    <Compile Include="Base\Role.cs" />
+    <Compile Include="Table\Role.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\DataFieldAttribute.cs" />

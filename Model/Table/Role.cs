@@ -1,6 +1,6 @@
-﻿using Model.Base;
+﻿using Model.Table;
 
-namespace Model.Base
+namespace Model.Table
 {
     [DataTable("role")]
     public class Role : Biont
