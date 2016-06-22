@@ -158,23 +158,28 @@ namespace DAL.Base
                 query += ", " + col[i];
             }
             query += ")";
+            Console.WriteLine(query);
             return ExecuteQuery(query);
         }
         public SqliteDataReader SelectWhere(string tableName, string[] items, string[] col, string[] operation, string[] values)
         {
-            if (col.Length != operation.Length || operation.Length != values.Length)
-            {
-                throw new SqliteException("col.Length != operation.Length != values.Length");
-            }
+            //if (col.Length != operation.Length || operation.Length != values.Length)
+            //{
+            //    throw new SqliteException("col.Length != operation.Length != values.Length");
+            //}
             string query = "SELECT " + items[0];
             for (int i = 1; i < items.Length; ++i)
             {
                 query += ", " + items[i];
             }
-            query += " FROM " + tableName + " WHERE " + col[0] + operation[0] + "'" + values[0] + "' ";
-            for (int i = 1; i < col.Length; ++i)
+            query += " FROM " + tableName;
+            if(col != null)
             {
-                query += " AND " + col[i] + operation[i] + "'" + values[0] + "' ";
+                query += " WHERE " + col[0] + operation[0] + "'" + values[0] + "' ";
+                for (int i = 1; i < col.Length; ++i)
+                {
+                    query += " AND " + col[i] + operation[i] + "'" + values[0] + "' ";
+                }
             }
             return ExecuteQuery(query);
         }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Model.Util
+namespace Model.Base
 {
     [AttributeUsage(AttributeTargets.Struct | AttributeTargets.Class)]
     public class DataTableAttribute : Attribute

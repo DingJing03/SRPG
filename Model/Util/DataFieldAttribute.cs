@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Model.Util
+namespace Model.Base
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class DataFieldAttribute : Attribute
@@ -14,8 +14,6 @@ namespace Model.Util
         private bool primaryKey;
 
         private bool identity;
-        private string v;
-        private int Size1;
 
         public string Name
         {
@@ -90,6 +88,10 @@ namespace Model.Util
             this.PrimaryKey = primaryKey;
             this.Identity = identity;
         }
-        
+
+        public DataFieldAttribute(string name)
+        {
+            this.name = name;
+        }
     }
 }

@@ -6,13 +6,7 @@ namespace Demo
     {
         static void Main(string[] args)
         {
-            DAL.BaseManager p = new DAL.BaseManager();
-            //p.start();
-            p.add();
-            p.updae();
-            p.del();
-            p.select();
-            
+            DAL.BaseManager.CreateTalbe();
             Console.ReadKey();
         }
 
