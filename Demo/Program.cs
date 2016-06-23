@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using Model.Util;
+using System.IO;
+using System.Text;
 
 namespace Demo
 {
@@ -6,10 +10,9 @@ namespace Demo
     {
         static void Main(string[] args)
         {
-            DAL.BaseManager.CreateTalbe();
+            DAL.BaseManager.ShowTableObjects();
             Console.ReadKey();
         }
 
-        
     }
 }

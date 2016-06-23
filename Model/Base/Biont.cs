@@ -1,4 +1,6 @@
-﻿namespace Model.Table
+﻿using Model.Util;
+
+namespace Model.Base
 {
     public class Biont : Cell
     {
@@ -18,7 +20,7 @@
         {
 
         }
-        public Biont(string name, double atk, double def, double hp, double maxHp, double vp, double maxVp) : base(name)
+        public Biont(string name, string intro, double atk, double def, double hp, double maxHp, double vp, double maxVp) : base(name, intro)
         {
             this.atk = atk;
             this.def = def;
@@ -28,7 +30,7 @@
             this.maxVp = maxVp;
         }
 
-        [DataField("atk")]
+        [DataField("攻击")]
         public double Atk
         {
             get
@@ -41,7 +43,7 @@
                 atk = value;
             }
         }
-        [DataField("def")]
+        [DataField("防御")]
         public double Def
         {
             get
@@ -54,7 +56,7 @@
                 def = value;
             }
         }
-        [DataField("hp")]
+        [DataField("生命值")]
         public double Hp
         {
             get
@@ -67,7 +69,7 @@
                 hp = value;
             }
         }
-        [DataField("max_hp")]
+        [DataField("最大生命值")]
         public double MaxHp
         {
             get
@@ -80,7 +82,7 @@
                 maxHp = value;
             }
         }
-        [DataField("vp")]
+        [DataField("体力值")]
         public double Vp
         {
             get
@@ -93,7 +95,7 @@
                 vp = value;
             }
         }
-        [DataField("max_vp")]
+        [DataField("最大体力值")]
         public double MaxVp
         {
             get

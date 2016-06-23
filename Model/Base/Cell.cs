@@ -1,9 +1,10 @@
-﻿using Model.Table;
+﻿using Model.Util;
 
-namespace Model.Table
+namespace Model.Base
 {
     public class Cell
     {
+        private string intro;
 
         private string name;
 
@@ -11,12 +12,26 @@ namespace Model.Table
         {
 
         }
-        public Cell(string name)
+        public Cell(string name, string intro)
         {
             this.name = name;
+            this.intro = intro;
+        }
+        [DataField("简介")]
+        public string Intro
+        {
+            get
+            {
+                return intro;
+            }
+
+            set
+            {
+                intro = value;
+            }
         }
 
-        [DataField("name")]
+        [DataField("名称")]
         public string Name
         {
             get

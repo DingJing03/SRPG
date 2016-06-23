@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Model.Table
+namespace Model.Util
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class DataFieldAttribute : Attribute
