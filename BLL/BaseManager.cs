@@ -1,40 +1,88 @@
 ﻿using System;
 using DAL.Base;
+using Model.Util;
 using Model.Table;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Diagnostics;
 
-namespace DAL
+namespace BLL
 {
     public class BaseManager
     {
-        Dictionary<string, object> map = new Dictionary<string, object>();
+        Dictionary<string, object> tableObjects = new Dictionary<string, object>();
 
-        public static void CreateTalbe()
-        {
-            ArrayList list = new ArrayList();
-            list.Add(new Role("角色", "角色简介", 1, 1, 10, 10, 10, 10));
-            //SetupBase.CreateTableObjects(list);
-            list.Add(new Role("角色1", "角色简介", 2, 1, 10, 10, 10, 10));
-            list.Add(new Role("角色2", "角色简介", 2, 2, 10, 10, 10, 10));
-            //list.Add(new Role("角色2", 2, 2, 10, 20, 10, 10));
-            //SetupBase.AddTableObjects(list);
-            List<Role> roles = SetupBase.SelectTableObjects<Role>(new Role());
-            Console.WriteLine(roles.Count);
-        }
-        
-        public static string ShowTableObjects()
-        {
+        readonly string MODEL_NAMESPACE = "Model";
 
-            foreach (Type t in Assembly.Load("Model").GetTypes())
+        readonly string MODEL_TABLE_NAMESPACE = "Model.Table";
+
+        public BaseManager()
+        {
+            foreach (Type t in Assembly.Load(MODEL_NAMESPACE).GetTypes())
             {
-                if (t.FullName.Contains("Model.Table"))
+                if (t.FullName.Contains(MODEL_TABLE_NAMESPACE))
                 {
-                    Console.WriteLine(t.Name);
+                    tableObjects.Add(t.Name, Assembly.Load(MODEL_NAMESPACE).CreateInstance(t.FullName, false));
                 }
             }
-            return null;
+            ExistTableObjects();
+        }
+
+        public Dictionary<string, string> FindTableObjects()
+        {
+            Dictionary<string, string> tableMap = new Dictionary<string, string>();
+            foreach (var item in tableObjects)
+            {
+                string tableName = ((DataTableAttribute)Attribute.GetCustomAttribute(item.Value.GetType(), typeof(DataTableAttribute))).TableName;
+                tableMap.Add(tableName, item.Key);
+            }
+            return tableMap;
+        }
+        
+        public void ExistTableObjects()
+        {
+            ArrayList list = new ArrayList();
+            //foreach (var item in tableObjects)
+            //{
+            //    if (!SetupBase.ExistsTableObjects(item.Value))
+            //    {
+            //        list.Add(item.Value);
+            //        Debug.WriteLine(item.Key, "CreateTable");
+            //    }
+            //}
+            if (list.Count > 0)
+            {
+                SetupBase.CreateTableObjects(list);
+            }
+        }
+
+        public Dictionary<string, string> FindTableTitle(string tableName)
+        {
+            Dictionary<string, string> list = new Dictionary<string, string>();
+            PropertyInfo[] propertys = tableObjects[tableName].GetType().GetProperties();
+            foreach(PropertyInfo property in propertys)
+            {
+                list.Add(property.Name, ((DataFieldAttribute)Attribute.GetCustomAttribute(property, typeof(DataFieldAttribute))).Name);
+            }
+            return list;
+        }
+
+        public List<List<string>> FindTableObjects(string tableName)
+        {
+            List<List<string>> list = new List<List<string>>();
+            List<object> data = SetupBase.SelectTableObjects(tableObjects[tableName]);
+            foreach(object o in data)
+            {
+                List<string> items = new List<string>();
+                PropertyInfo[] propertys = o.GetType().GetProperties();
+                foreach(PropertyInfo property in propertys)
+                {
+                    items.Add(property.GetValue(o, null).ToString());
+                }
+                list.Add(items);
+            }
+            return list;
         }
     }
 }

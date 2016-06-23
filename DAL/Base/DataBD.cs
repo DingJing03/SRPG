@@ -158,7 +158,7 @@ namespace DAL.Base
                 query += ", " + col[i];
             }
             query += ")";
-            Console.WriteLine(query);
+            Debug.WriteLine(query, "selectSql");
             return ExecuteQuery(query);
         }
         public SqliteDataReader SelectWhere(string tableName, string[] items, string[] col, string[] operation, string[] values)
@@ -181,6 +181,12 @@ namespace DAL.Base
                     query += " AND " + col[i] + operation[i] + "'" + values[0] + "' ";
                 }
             }
+            return ExecuteQuery(query);
+        }
+
+        public SqliteDataReader SelectWhere(string query)
+        {
+            Debug.WriteLine(query, "selectSql");
             return ExecuteQuery(query);
         }
 

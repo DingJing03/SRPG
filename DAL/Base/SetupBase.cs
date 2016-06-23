@@ -6,8 +6,13 @@ using System.Collections.Generic;
 
 namespace DAL.Base
 {
+    /// <summary>
+    /// 数据库操作
+    /// </summary>
     public static class SetupBase
     {
+        const string DB_NAME = "data";
+
         /// <summary>
         /// 创建数据库表
         /// </summary>
@@ -15,7 +20,7 @@ namespace DAL.Base
         public static void CreateTableObjects(ArrayList tableObjects)
         {
             //创建数据库名称为frank.db
-            DbAccess db = new DbAccess("data source=data.db");
+            DbAccess db = new DbAccess("data source=" + DB_NAME + ".db");
             foreach (Object o in tableObjects)
             {
                 string tableName = o.GetType().Name;
@@ -44,7 +49,7 @@ namespace DAL.Base
         public static void AddTableObjects(ArrayList tableObjects)
         {
             //创建数据库名称为xuanyusong.db
-            DbAccess db = new DbAccess("data source=data.db");
+            DbAccess db = new DbAccess("data source=" + DB_NAME + ".db");
             foreach (Object o in tableObjects)
             {
                 string tableName = o.GetType().Name;
@@ -79,7 +84,7 @@ namespace DAL.Base
         /// <typeparam name="T">实体</typeparam>
         /// <param name="o">实体</param>
         /// <returns>实体集合</returns>
-        public static List<T> SelectTableObjects<T>(Object o) where T : class, new()
+        public static List<object> SelectTableObjects(Object o)
         {
             string tableName = o.GetType().Name;
             PropertyInfo[] propertys = o.GetType().GetProperties();
@@ -89,10 +94,10 @@ namespace DAL.Base
                 field[i] = propertys[i].Name;
             }
             //创建数据库名称为xuanyusong.db
-            DbAccess db = new DbAccess("data source=data.db");
+            DbAccess db = new DbAccess("data source=" + DB_NAME + ".db");
             //注解1
             SqliteDataReader sqReader = db.SelectWhere(tableName, field, null, null, null);
-            List<T> list = new List<T>();
+            List<object> list = new List<object>();
             while (sqReader.Read())
             {
                 foreach (string s in field)
@@ -100,7 +105,7 @@ namespace DAL.Base
                     PropertyInfo propertyInfo = o.GetType().GetProperty(s);
                     propertyInfo.SetValue(o, Convert.ChangeType(sqReader[s], propertyInfo.PropertyType), null);
                 }
-                list.Add((T)o);
+                list.Add(o);
             }
             db.CloseSqlConnection();
             return list;
@@ -112,7 +117,7 @@ namespace DAL.Base
         public static void UpdateTalbeObjects(ArrayList data)
         {
             //创建数据库名称为xuanyusong.db
-            DbAccess db = new DbAccess("data source=data.db");
+            DbAccess db = new DbAccess("data source=" + DB_NAME + ".db");
             foreach (Object o in data)
             {
                 string tableName = o.GetType().Name;
@@ -149,7 +154,7 @@ namespace DAL.Base
         public static void DeleteTableObjects(ArrayList data)
         {
             //创建数据库名称为xuanyusong.db
-            DbAccess db = new DbAccess("data source=data.db");
+            DbAccess db = new DbAccess("data source=" + DB_NAME + ".db");
             foreach (Object o in data)
             {
                 string tableName = o.GetType().Name;
@@ -165,6 +170,26 @@ namespace DAL.Base
                 db.Delete(tableName, new string[] { "Id" }, new string[] { id });
             }
             db.CloseSqlConnection();
+        }
+
+        public static bool ExistsTableObjects(Object o)
+        {
+            string tableName = o.GetType().Name;
+            //创建数据库名称为xuanyusong.db
+            DbAccess db = new DbAccess("data source=" + DB_NAME + ".db");
+            SqliteDataReader sqReader = db.SelectWhere("SELECT COUNT(*) count FROM sqlite_master where [type]='table' and [name]='" + tableName + "';");
+            while (sqReader.Read())
+            {
+                if (sqReader["count"].ToString().Equals("1"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
         }
     }
 

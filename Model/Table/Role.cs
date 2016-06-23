@@ -6,7 +6,7 @@ namespace Model.Table
     /// <summary>
     /// 角色
     /// </summary>
-    [DataTable("Role")]
+    [DataTable("角色")]
     public class Role : Biont
     {
 
@@ -21,7 +21,7 @@ namespace Model.Table
             
         }
 
-        [DataField("id")]
+        [DataField("Id")]
         public int Id
         {
             get

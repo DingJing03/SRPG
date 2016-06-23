@@ -1,8 +1,6 @@
 ﻿using System;
+using BLL;
 using System.Collections.Generic;
-using Model.Util;
-using System.IO;
-using System.Text;
 
 namespace Demo
 {
@@ -10,7 +8,12 @@ namespace Demo
     {
         static void Main(string[] args)
         {
-            DAL.BaseManager.ShowTableObjects();
+            BaseManager manager = new BaseManager();
+            Dictionary<string, string> tableMap =  manager.FindTableObjects();
+            foreach(var item in tableMap)
+            {
+                Console.WriteLine(item.Key + "\t" + item.Value);
+            }
             Console.ReadKey();
         }
 
