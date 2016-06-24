@@ -3,11 +3,17 @@ using System.Collections;
 using System.Reflection;
 using Mono.Data.Sqlite;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace DAL.Base
 {
+    /// <summary>
+    /// 数据库操作
+    /// </summary>
     public static class SetupBase
     {
+        const string DB_NAME = "DataDB";
+
         /// <summary>
         /// 创建数据库表
         /// </summary>
@@ -15,7 +21,7 @@ namespace DAL.Base
         public static void CreateTableObjects(ArrayList tableObjects)
         {
             //创建数据库名称为frank.db
-            DbAccess db = new DbAccess("data source=data.db");
+            DbAccess db = new DbAccess("data source=" + DB_NAME + ".db");
             foreach (Object o in tableObjects)
             {
                 string tableName = o.GetType().Name;
@@ -32,7 +38,7 @@ namespace DAL.Base
                 }
                 //创建数据库表，与字段
                 db.CreateTable(tableName, field);
-                Console.WriteLine("创建数据表：" + tableName);
+                Debug.WriteLine(tableName, "创建数据库表");
             }
             //关闭对象
             db.CloseSqlConnection();
@@ -43,8 +49,8 @@ namespace DAL.Base
         /// <param name="tableObjects">实体数据集合</param>
         public static void AddTableObjects(ArrayList tableObjects)
         {
-            //创建数据库名称为xuanyusong.db
-            DbAccess db = new DbAccess("data source=data.db");
+            //创建数据库名称为.db
+            DbAccess db = new DbAccess("data source=" + DB_NAME + ".db");
             foreach (Object o in tableObjects)
             {
                 string tableName = o.GetType().Name;
@@ -69,7 +75,7 @@ namespace DAL.Base
                 }
                 //请注意 插入字符串是 已经要加上'宣雨松' 不然会报错
                 db.InsertInto(tableName, field);
-                Console.WriteLine("插入数据表：" + tableName);
+                Debug.WriteLine(tableName, "插入数据表");
             }
             db.CloseSqlConnection();
         }
@@ -79,7 +85,7 @@ namespace DAL.Base
         /// <typeparam name="T">实体</typeparam>
         /// <param name="o">实体</param>
         /// <returns>实体集合</returns>
-        public static List<T> SelectTableObjects<T>(Object o) where T : class, new()
+        public static List<object> SelectTableObjects(object o)
         {
             string tableName = o.GetType().Name;
             PropertyInfo[] propertys = o.GetType().GetProperties();
@@ -88,19 +94,20 @@ namespace DAL.Base
             {
                 field[i] = propertys[i].Name;
             }
-            //创建数据库名称为xuanyusong.db
-            DbAccess db = new DbAccess("data source=data.db");
+            //创建数据库名称为.db
+            DbAccess db = new DbAccess("data source=" + DB_NAME + ".db");
             //注解1
             SqliteDataReader sqReader = db.SelectWhere(tableName, field, null, null, null);
-            List<T> list = new List<T>();
+            List<object> list = new List<object>();
             while (sqReader.Read())
             {
+                o = o.GetType().Assembly.CreateInstance(o.GetType().FullName);  // 创建新的实例
                 foreach (string s in field)
                 {
                     PropertyInfo propertyInfo = o.GetType().GetProperty(s);
                     propertyInfo.SetValue(o, Convert.ChangeType(sqReader[s], propertyInfo.PropertyType), null);
                 }
-                list.Add((T)o);
+                list.Add(o);
             }
             db.CloseSqlConnection();
             return list;
@@ -109,26 +116,26 @@ namespace DAL.Base
         /// 更新
         /// </summary>
         /// <param name="data">实体集合</param>
-        public static void UpdateTalbeObjects(ArrayList data)
+        public static void UpdateTableObjects(ArrayList data)
         {
-            //创建数据库名称为xuanyusong.db
-            DbAccess db = new DbAccess("data source=data.db");
+            //创建数据库名称为.db
+            DbAccess db = new DbAccess("data source=" + DB_NAME + ".db");
             foreach (Object o in data)
             {
                 string tableName = o.GetType().Name;
                 PropertyInfo[] propertys = o.GetType().GetProperties();
-                string[] field = new string[propertys.Length];
-                string[] values = new string[propertys.Length];
-                string id = string.Empty;
-                for (int i = 0; i < propertys.Length; i++)
+                string[] field = new string[propertys.Length-1];
+                string[] values = new string[propertys.Length-1];
+                string id = string.Empty; int i = 0;
+                foreach (PropertyInfo property in propertys)
                 {
-                    string value = propertys[i].GetValue(o, null).ToString();
-                    if (propertys[i].Name.Equals("Id"))
+                    string value = property.GetValue(o, null).ToString();
+                    if (property.Name.Equals("Id"))
                     {
                         id = value;
                         continue;
                     }
-                    field[i] = propertys[i].Name;
+                    field[i] = property.Name;
                     if (value is string)
                     {
                         values[i] = "'" + value + "'";
@@ -137,6 +144,7 @@ namespace DAL.Base
                     {
                         values[i] = value;
                     }
+                    i++;
                 }
                 db.UpdateInto(tableName, field, values, "Id", id);
             }
@@ -148,8 +156,7 @@ namespace DAL.Base
         /// <param name="data">根据实体集合id</param>
         public static void DeleteTableObjects(ArrayList data)
         {
-            //创建数据库名称为xuanyusong.db
-            DbAccess db = new DbAccess("data source=data.db");
+            DbAccess db = new DbAccess("data source=" + DB_NAME + ".db");
             foreach (Object o in data)
             {
                 string tableName = o.GetType().Name;
@@ -165,6 +172,71 @@ namespace DAL.Base
                 db.Delete(tableName, new string[] { "Id" }, new string[] { id });
             }
             db.CloseSqlConnection();
+        }
+        public static void DeleteTableObjects(string id, string tableName)
+        {
+            DbAccess db = new DbAccess("data source=" + DB_NAME + ".db");
+            db.Delete(tableName, new string[] { "Id" }, new string[] { id });
+            db.CloseSqlConnection();
+        }
+        /// <summary>
+        /// 查询数据库所有表名
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> ExistsTableObjects()
+        {
+            List<string> list = new List<string>();
+            //创建数据库名称为.db
+            DbAccess db = new DbAccess("data source=" + DB_NAME + ".db");
+            SqliteDataReader sqReader = db.SelectWhere("SELECT name FROM sqlite_master where [type]='table';");
+            while (sqReader.Read())
+            {
+                list.Add(sqReader["name"].ToString());
+            }
+            return list;
+        }
+        /// <summary>
+        /// 根据ID查询表数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public static Dictionary<string, string> GetTableObjectsById(string id, object o)
+        {
+            string tableName = o.GetType().Name;
+            PropertyInfo[] propertys = o.GetType().GetProperties();
+            Dictionary<string, string> tableObjects = new Dictionary<string, string>();
+            DbAccess db = new DbAccess("data source=" + DB_NAME + ".db");
+            SqliteDataReader reader = db.SelectWhere(tableName, null, new string[] { "Id" }, new string[] { " = " }, new string[] { id });
+            while (reader.Read())
+            {
+                foreach(PropertyInfo property in propertys)
+                {
+                    tableObjects.Add(property.Name, reader[property.Name].ToString());
+                }
+            }
+            db.CloseSqlConnection();
+            return tableObjects;
+        }
+        /// <summary>
+        /// 查询名称
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public static Dictionary<string, string> FindTableName(object o)
+        {
+            string tableName = o.GetType().Name;
+            Dictionary<string, string> tableNames = new Dictionary<string, string>();
+            //创建数据库名称为.db
+            DbAccess db = new DbAccess("data source=" + DB_NAME + ".db");
+            //注解1
+            SqliteDataReader reader = db.SelectWhere(tableName, null, null, null, null);
+            while (reader.Read())
+            {
+                tableNames.Add(reader["Name"].ToString(), reader["Id"].ToString());
+            }
+            db.CloseSqlConnection();
+            return tableNames;
         }
     }
 

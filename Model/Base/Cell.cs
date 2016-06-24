@@ -8,14 +8,17 @@ namespace Model.Base
 
         private string name;
 
+        private double mass;
+
         public Cell()
         {
 
         }
-        public Cell(string name, string intro)
+        public Cell(string name, string intro, double mass)
         {
             this.name = name;
             this.intro = intro;
+            this.mass = mass;
         }
         [DataField("简介")]
         public string Intro
@@ -42,6 +45,19 @@ namespace Model.Base
             set
             {
                 name = value;
+            }
+        }
+        [DataField("质量")]
+        public double Mass
+        {
+            get
+            {
+                return mass;
+            }
+
+            set
+            {
+                mass = value;
             }
         }
     }

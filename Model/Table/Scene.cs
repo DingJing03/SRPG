@@ -14,7 +14,7 @@ namespace Model.Table
             
         }
 
-        public Scene(string name, string infro) : base(name, infro)
+        public Scene(string name, string infro, double mass) : base(name, infro, mass)
         {
 
         }

@@ -3,24 +3,12 @@ using Model.Base;
 
 namespace Model.Table
 {
-    /// <summary>
-    /// 角色
-    /// </summary>
-    [DataTable("角色")]
-    public class Role : Biont
+    [DataTable("主角")]
+    public class Protagonist : Biont
     {
-
         private int id;
 
-        public Role()
-        {
-
-        }
-        public Role(string name, string intro, double mass, double atk, double def, double hp, double maxHp, double vp, double maxVp) : base(name, intro, mass, atk, def, hp, maxHp, vp, maxVp)
-        {
-            
-        }
-
+        private int race_Id;
         [DataField("Id")]
         public int Id
         {
@@ -35,7 +23,7 @@ namespace Model.Table
             }
         }
         [DataField("种族")]
-        public string Race_Id
+        public int Race_Id
         {
             get
             {
@@ -47,7 +35,5 @@ namespace Model.Table
                 race_Id = value;
             }
         }
-
-        private string race_Id;
     }
 }

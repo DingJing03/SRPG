@@ -4,12 +4,12 @@
     {
         public Nature()
         {
-            
-        }
 
-        public Nature(string name, string infro) : base(name, infro)
+        }
+        public Nature(string name, string infro, double mass) : base(name, infro, mass)
         {
 
         }
+
     }
 }

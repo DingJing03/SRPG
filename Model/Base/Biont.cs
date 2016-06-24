@@ -20,7 +20,7 @@ namespace Model.Base
         {
 
         }
-        public Biont(string name, string intro, double atk, double def, double hp, double maxHp, double vp, double maxVp) : base(name, intro)
+        public Biont(string name, string intro, double mass, double atk, double def, double hp, double maxHp, double vp, double maxVp) : base(name, intro, mass)
         {
             this.atk = atk;
             this.def = def;
