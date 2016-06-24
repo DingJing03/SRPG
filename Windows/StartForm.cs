@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Windows
@@ -53,16 +54,28 @@ namespace Windows
             }
             this.tableObjectsListView.BeginUpdate();   //数据更新，UI暂时挂起，直到EndUpdate绘制控件，可以有效避免闪烁并大大提高加载速度
             this.tableObjectsListView.Items.Clear();
-            List<List<string>> list = showData.FindTableObjects(tableName);
-            foreach (List<string> data in list)
+            List<Dictionary<string, string>> list = showData.FindTableObjects(tableName);
+            foreach (Dictionary<string, string> data in list)
             {
                 ListViewItem lvi = new ListViewItem();
                 if(data.Count > 0)
                 {
-                    lvi.Text = data[0];
-                    for (int i = 1; i < data.Count; i++)
+                    int i = 0;
+                    foreach(var item in tableTitle)
                     {
-                        lvi.SubItems.Add(data[i]);
+                        if(i == 0)
+                        {
+                            lvi.Text = data[item.Key];
+                        }
+                        else if(item.Key.Contains("_"))
+                        {
+                            lvi.SubItems.Add(data[Regex.Split(item.Key, "_")[0] + "_Name"]);
+                        }
+                        else
+                        {
+                            lvi.SubItems.Add(data[item.Key]);
+                        }
+                        i++;
                     }
                 }
                 this.tableObjectsListView.Items.Add(lvi);

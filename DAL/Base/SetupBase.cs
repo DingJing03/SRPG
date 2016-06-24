@@ -4,6 +4,7 @@ using System.Reflection;
 using Mono.Data.Sqlite;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace DAL.Base
 {
@@ -80,11 +81,61 @@ namespace DAL.Base
             db.CloseSqlConnection();
         }
         /// <summary>
-        /// 查询
+        /// 查询显示用的表格
         /// </summary>
         /// <typeparam name="T">实体</typeparam>
         /// <param name="o">实体</param>
-        /// <returns>实体集合</returns>
+        /// <returns>表格集合</returns>
+        public static List<Dictionary<string, string>> SelectTableObjectsShow(object o)
+        {
+            string tableName = o.GetType().Name;
+            PropertyInfo[] propertys = o.GetType().GetProperties();
+            List<string> field = new List<string>();
+            List<string> sTableNames = new List<string>();
+            foreach (PropertyInfo property in propertys)
+            {
+                if (property.Name.Contains("_"))
+                {
+                    sTableNames.Add(Regex.Split(property.Name, "_")[0]);
+                }
+                else
+                {
+                    field.Add(property.Name);
+                }
+            }
+            //创建数据库名称为.db
+            DbAccess db = new DbAccess("data source=" + DB_NAME + ".db");
+            SqliteDataReader sqReader;
+            if (sTableNames.Count > 0)
+            {
+                sqReader = db.SelectJoinWhere(tableName, sTableNames.ToArray(), field.ToArray(), null);
+            }
+            else
+            {
+                sqReader = db.SelectWhere(tableName, field.ToArray(), null, null, null);
+            }
+            List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
+            while (sqReader.Read())
+            {
+                Dictionary<string, string> item = new Dictionary<string, string>();
+                foreach (string s in field)
+                {
+                    item.Add(s, sqReader[s].ToString());
+                }
+                foreach (string s in sTableNames)
+                {
+                    item.Add(s + "_Name", sqReader[s + "_Name"].ToString());
+                }
+                list.Add(item);
+            }
+            db.CloseSqlConnection();
+            return list;
+        }
+        /// <summary>
+        /// 查询返回实体
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
         public static List<object> SelectTableObjects(object o)
         {
             string tableName = o.GetType().Name;

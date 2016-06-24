@@ -22,7 +22,7 @@ namespace Windows
             return manager.FindTableTitle(tableName);
         }
 
-        public List<List<string>> FindTableObjects(string tableName)
+        public List<Dictionary<string, string>> FindTableObjects(string tableName)
         {
             return manager.FindTableObjects(tableName);
         }

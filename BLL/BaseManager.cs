@@ -86,21 +86,9 @@ namespace BLL
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
-        public List<List<string>> FindTableObjects(string tableName)
+        public List<Dictionary<string, string>> FindTableObjects(string tableName)
         {
-            List<List<string>> list = new List<List<string>>();
-            List<object> data = SetupBase.SelectTableObjects(tableList[tableName]);
-            foreach(object o in data)
-            {
-                List<string> items = new List<string>();
-                PropertyInfo[] propertys = o.GetType().GetProperties();
-                foreach(PropertyInfo property in propertys)
-                {
-                    items.Add(property.GetValue(o, null).ToString());
-                }
-                list.Add(items);
-            }
-            return list;
+            return SetupBase.SelectTableObjectsShow(tableList[tableName]);
         }
         /// <summary>
         /// 添加数据

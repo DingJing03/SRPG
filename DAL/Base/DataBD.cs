@@ -199,5 +199,34 @@ namespace DAL.Base
             return ExecuteQuery(query);
         }
 
+        public SqliteDataReader SelectJoinWhere(string mainTableName, string[] slaveTableNames, string[] items, string[] ids)
+        {
+            string query = "SELECT ";
+            foreach (string s in items)
+            {
+                query += "m." + s + ",";
+            }
+            for (int i = 0; i < slaveTableNames.Length; i++)
+            {
+                query += "s" + i + ".Name AS " + slaveTableNames[i] + "_Name,";
+            }
+            query = query.Substring(0, query.Length - 1);
+            query += " FROM " + mainTableName + " AS m ";
+            for(int i = 0;i < slaveTableNames.Length; i++)
+            {
+                query += " JOIN " + slaveTableNames[i] + " AS s" + i + " ON m." + slaveTableNames[i] + "_Id = s" + i + ".Id ";
+            }
+            if(ids != null && ids.Length > 0)
+            {
+                query += "WHERE m.Id In (";
+                foreach(string s in ids)
+                {
+                    query += s + ",";
+                }
+                query = query.Substring(0, query.Length - 1);
+                query += ")";
+            }
+            return ExecuteQuery(query);
+        }
     }
 }
