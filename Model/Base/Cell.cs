@@ -4,22 +4,15 @@ namespace Model.Base
 {
     public class Cell
     {
-        private string intro;
+        /// <remarks>说明</remarks>
+        public string intro;
 
-        private string name;
+        /// <remarks>名称</remarks>
+        public string name;
 
-        private double mass;
+        /// <remarks>质量</remarks>
+        public double mass;
 
-        public Cell()
-        {
-
-        }
-        public Cell(string name, string intro, double mass)
-        {
-            this.name = name;
-            this.intro = intro;
-            this.mass = mass;
-        }
         [DataField("简介")]
         public string Intro
         {
