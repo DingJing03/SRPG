@@ -4,53 +4,49 @@ namespace Model.Base
 {
     public class Cell
     {
+        private byte _id;
         /// <remarks>说明</remarks>
-        public string intro;
-
+        private string _intro;
         /// <remarks>名称</remarks>
-        public string name;
-
-        /// <remarks>质量</remarks>
-        public double mass;
+        private string _name;
 
         [DataField("简介")]
         public string Intro
         {
             get
             {
-                return intro;
+                return _intro;
             }
 
             set
             {
-                intro = value;
+                _intro = value;
             }
         }
-
         [DataField("名称")]
         public string Name
         {
             get
             {
-                return name;
+                return _name;
             }
 
             set
             {
-                name = value;
+                _name = value;
             }
         }
-        [DataField("质量")]
-        public double Mass
+        [DataField("ID")]
+        public byte Id
         {
             get
             {
-                return mass;
+                return _id;
             }
 
             set
             {
-                mass = value;
+                _id = value;
             }
         }
     }

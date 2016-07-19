@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Model.Base.Biont" Collapsed="true">
+    <Position X="1.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AlAAgAIAgIQAmoAFAIIAQQARAABAEQAAQAEAQABZAAA=</HashCode>
+      <FileName>Base\Biont.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Base.Cell" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAABAAgA=</HashCode>
+      <FileName>Base\Cell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Base.Equip" Collapsed="true">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAABAgAgAQAAIAAAAAA=</HashCode>
+      <FileName>Base\Equip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Base.Nature" Collapsed="true">
+    <Position X="17.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAQAAYAE=</HashCode>
+      <FileName>Base\Nature.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Class1" Collapsed="true">
+    <Position X="21" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Class1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Table.Article" Collapsed="true">
+    <Position X="8.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Table\Article.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Table.DefenseEquip" Collapsed="true">
+    <Position X="7.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAQAAAAAAAAAAABAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Table\DefenseEquip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Table.House" Collapsed="true">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Table\House.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Table.InfightingEquip" Collapsed="true">
+    <Position X="11.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAIAAAACAAAAAAAAABAAAAAQAAAAAAAAAABAA=</HashCode>
+      <FileName>Table\InfightingEquip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Table.Making" Collapsed="true">
+    <Position X="21" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAAAAAAABAAAACQAAAAEAAABAAAAAQAAAgA=</HashCode>
+      <FileName>Table\Making.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Table.Material" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Table\Material.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Table.Monster" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Table\Monster.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Table.RemoteEquip" Collapsed="true">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAEAIAAAACAAAAAAAAABAMAAAQDBAAAAAQAAAAA=</HashCode>
+      <FileName>Table\RemoteEquip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Table.Role" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Table\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Table.Scene" Collapsed="true">
+    <Position X="18.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAEAAAABAAAA=</HashCode>
+      <FileName>Table\Scene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Table.Town" Collapsed="true">
+    <Position X="16.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Table\Town.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Util.DataFieldAttribute" Collapsed="true">
+    <Position X="22.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAIAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\DataFieldAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Util.DataTableAttribute" Collapsed="true">
+    <Position X="24.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAA=</HashCode>
+      <FileName>Util\DataTableAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Model.Enum.ArticleLevel" Collapsed="true">
+    <Position X="21" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAEAEAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Enum\ArticleLevel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Model.Enum.EquipType" Collapsed="true">
+    <Position X="22.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAABARAAAABACAAAAAAAAABAAA=</HashCode>
+      <FileName>Enum\EquipType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Model.Enum.Explore" Collapsed="true">
+    <Position X="24.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAACAAAAAAAAAAAAAAAAAAAAIEA=</HashCode>
+      <FileName>Enum\Explore.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Model.Enum.HouseType" Collapsed="true">
+    <Position X="21" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAIAAEAAAAA=</HashCode>
+      <FileName>Enum\HouseType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Model.Enum.Terrain" Collapsed="true">
+    <Position X="22.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABIAAAACAAAAAAAAAAAAQAAAQAAAAAAACAAAgAAAAAA=</HashCode>
+      <FileName>Enum\Terrain.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

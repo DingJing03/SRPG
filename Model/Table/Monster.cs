@@ -3,24 +3,11 @@ using Model.Util;
 
 namespace Model.Table
 {
+    /// <summary>怪物</summary>
+    /// <remarks>怪物</remarks>
     [DataTable("怪物")]
     public class Monster : Biont
     {
-        private int id;
 
-        [DataField("Id")]
-        public int Id
-        {
-            get
-            {
-                return id;
-            }
-
-            set
-            {
-                id = value;
-            }
-        }
-        
     }
 }

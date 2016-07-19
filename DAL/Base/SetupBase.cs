@@ -15,6 +15,19 @@ namespace DAL.Base
     {
         const string DB_NAME = "DataDB";
 
+        public static void CopyData(String newFileName)
+        {
+            if (!System.IO.Directory.Exists(@"/save"))
+            {
+                // 目录不存在，建立目录
+                System.IO.Directory.CreateDirectory(@"/save");
+            }
+            String sourcePath = DB_NAME + ".db";
+            String targetPath = "/save/" + newFileName + ".db";
+            bool isrewrite = true; // true=覆盖已存在的同名文件,false则反之
+            System.IO.File.Copy(sourcePath, targetPath, isrewrite);
+        }
+
         /// <summary>
         /// 创建数据库表
         /// </summary>
@@ -94,7 +107,7 @@ namespace DAL.Base
             List<string> sTableNames = new List<string>();
             foreach (PropertyInfo property in propertys)
             {
-                if (property.Name.Contains("_"))
+                if (property.Name.Contains("_Id"))
                 {
                     sTableNames.Add(Regex.Split(property.Name, "_")[0]);
                 }

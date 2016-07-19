@@ -2,342 +2,343 @@
 
 namespace Model.Base
 {
+    /// <remarks>生物</remarks>
     public class Biont : Cell
     {
         /// <summary>
         /// 力量
         /// </summary>
         /// <remarks>力量</remarks>
-        private double strength;
+        private int _strength;
         /// <summary>
         /// 当前体质
         /// </summary>
         /// <remarks>当前体质</remarks>
-        private double currentHabitus;
+        private int _currentHabitus;
         /// <summary>
         /// 最大体质
         /// </summary>
         /// <remarks>最大体质</remarks>
-        private double maxHabitus;
+        private int _maxHabitus;
         /// <summary>
         /// 理论体质
         /// </summary>
         /// <remarks>理论体质</remarks>
-        private double theoryHabitus;
+        private int _theoryHabitus;
         /// <summary>
         /// 当前耐力
         /// </summary>
         /// <remarks>当前耐力</remarks>
-        private double currentStamina;
+        private int _currentStamina;
         /// <summary>
         /// 最大耐力
         /// </summary>
         /// <remarks>最大耐力</remarks>
-        private double maxStamina;
+        private int _maxStamina;
         /// <summary>
         /// 理论耐力
         /// </summary>
         /// <remarks>理论耐力</remarks>
-        private double theoryStamina;
+        private int _theoryStamina;
         /// <summary>
         /// 当前负重
         /// </summary>
         /// <remarks>当前负重</remarks>
-        private double currentLoad;
+        private int _currentLoad;
         /// <summary>
         /// 最大负重
         /// </summary>
         /// <remarks>最大负重</remarks>
-        private double maxLoad;
+        private int _maxLoad;
         /// <summary>
         /// 当前饱食度
         /// </summary>
         /// <remarks>当前饱食度</remarks>
-        private double currentEatDegree;
+        private int _currentEatDegree;
         /// <summary>
         /// 最大饱食度
         /// </summary>
         /// <remarks>最大饱食度</remarks>
-        private double maxEatDegree;
+        private int _maxEatDegree;
         /// <summary>
         /// 感知
         /// </summary>
         /// <remarks>感知</remarks>
-        private double perception;
+        private int _perception;
         /// <summary>
         /// 敏捷
         /// </summary>
         /// <remarks>敏捷</remarks>
-        private double agility;
+        private int _agility;
         /// <summary>
         /// 速度
         /// </summary>
         /// <remarks>速度</remarks>
-        private double speed;
+        private int _speed;
         /// <summary>
         /// 命中
         /// </summary>
         /// <remarks>命中</remarks>
-        private double hit;
+        private int _hit;
         /// <summary>
         /// 闪避
         /// </summary>
         /// <remarks>闪避</remarks>
-        private double sidestep;
+        private int _sidestep;
         /// <summary>
         /// 力量
         /// </summary>
         [DataField("力量")]
-        public double Strength
+        public int Strength
         {
             get
             {
-                return strength;
+                return _strength;
             }
 
             set
             {
-                strength = value;
+                _strength = value;
             }
         }
         /// <summary>
         /// 当前体质
         /// </summary>
         [DataField("当前体质")]
-        public double CurrentHabitus
+        public int CurrentHabitus
         {
             get
             {
-                return currentHabitus;
+                return _currentHabitus;
             }
 
             set
             {
-                currentHabitus = value;
+                _currentHabitus = value;
             }
         }
         /// <summary>
         /// 最大体质
         /// </summary>
         [DataField("最大体质")]
-        public double MaxHabitus
+        public int MaxHabitus
         {
             get
             {
-                return maxHabitus;
+                return _maxHabitus;
             }
 
             set
             {
-                maxHabitus = value;
+                _maxHabitus = value;
             }
         }
         /// <summary>
         /// 理论体质
         /// </summary>
         [DataField("理论体质")]
-        public double TheoryHabitus
+        public int TheoryHabitus
         {
             get
             {
-                return theoryHabitus;
+                return _theoryHabitus;
             }
 
             set
             {
-                theoryHabitus = value;
+                _theoryHabitus = value;
             }
         }
         /// <summary>
         /// 当前耐力
         /// </summary>
         [DataField("当前耐力")]
-        public double CurrentStamina
+        public int CurrentStamina
         {
             get
             {
-                return currentStamina;
+                return _currentStamina;
             }
 
             set
             {
-                currentStamina = value;
+                _currentStamina = value;
             }
         }
         /// <summary>
         /// 最大耐力
         /// </summary>
         [DataField("最大耐力")]
-        public double MaxStamina
+        public int MaxStamina
         {
             get
             {
-                return maxStamina;
+                return _maxStamina;
             }
 
             set
             {
-                maxStamina = value;
+                _maxStamina = value;
             }
         }
         /// <summary>
         /// 理论耐力
         /// </summary>
         [DataField("理论耐力")]
-        public double TheoryStamina
+        public int TheoryStamina
         {
             get
             {
-                return theoryStamina;
+                return _theoryStamina;
             }
 
             set
             {
-                theoryStamina = value;
+                _theoryStamina = value;
             }
         }
         /// <summary>
         /// 当前负重
         /// </summary>
         [DataField("当前负重")]
-        public double CurrentLoad
+        public int CurrentLoad
         {
             get
             {
-                return currentLoad;
+                return _currentLoad;
             }
 
             set
             {
-                currentLoad = value;
+                _currentLoad = value;
             }
         }
         /// <summary>
         /// 最大负重
         /// </summary>
         [DataField("最大负重")]
-        public double MaxLoad
+        public int MaxLoad
         {
             get
             {
-                return maxLoad;
+                return _maxLoad;
             }
 
             set
             {
-                maxLoad = value;
+                _maxLoad = value;
             }
         }
         /// <summary>
         /// 当前饱食度
         /// </summary>
         [DataField("当前饱食度")]
-        public double CurrentEatDegree
+        public int CurrentEatDegree
         {
             get
             {
-                return currentEatDegree;
+                return _currentEatDegree;
             }
 
             set
             {
-                currentEatDegree = value;
+                _currentEatDegree = value;
             }
         }
         /// <summary>
         /// 最大饱食度
         /// </summary>
         [DataField("最大饱食度")]
-        public double MaxEatDegree
+        public int MaxEatDegree
         {
             get
             {
-                return maxEatDegree;
+                return _maxEatDegree;
             }
 
             set
             {
-                maxEatDegree = value;
+                _maxEatDegree = value;
             }
         }
         /// <summary>
         /// 感知
         /// </summary>
         [DataField("感知")]
-        public double Perception
+        public int Perception
         {
             get
             {
-                return perception;
+                return _perception;
             }
 
             set
             {
-                perception = value;
+                _perception = value;
             }
         }
         /// <summary>
         /// 敏捷
         /// </summary>
         [DataField("敏捷")]
-        public double Agility
+        public int Agility
         {
             get
             {
-                return agility;
+                return _agility;
             }
 
             set
             {
-                agility = value;
+                _agility = value;
             }
         }
         /// <summary>
         /// 速度
         /// </summary>
         [DataField("速度")]
-        public double Speed
+        public int Speed
         {
             get
             {
-                return speed;
+                return _speed;
             }
 
             set
             {
-                speed = value;
+                _speed = value;
             }
         }
         /// <summary>
         /// 命中
         /// </summary>
         [DataField("命中")]
-        public double Hit
+        public int Hit
         {
             get
             {
-                return hit;
+                return _hit;
             }
 
             set
             {
-                hit = value;
+                _hit = value;
             }
         }
         /// <summary>
         /// 闪避
         /// </summary>
         [DataField("闪避")]
-        public double Sidestep
+        public int Sidestep
         {
             get
             {
-                return sidestep;
+                return _sidestep;
             }
 
             set
             {
-                sidestep = value;
+                _sidestep = value;
             }
         }
     }

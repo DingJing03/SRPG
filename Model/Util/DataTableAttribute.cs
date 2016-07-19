@@ -2,7 +2,7 @@
 
 namespace Model.Util
 {
-    [AttributeUsage(AttributeTargets.Struct | AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.All)]
     public class DataTableAttribute : Attribute
     {
         private string tableName;

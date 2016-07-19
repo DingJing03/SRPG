@@ -2,7 +2,7 @@
 
 namespace Model.Util
 {
-    [AttributeUsage(AttributeTargets.Property)]
+    [AttributeUsage(AttributeTargets.All)]
     public class DataFieldAttribute : Attribute
     {
         private string name;

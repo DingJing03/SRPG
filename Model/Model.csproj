@@ -40,22 +40,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enum\ArticleLevel.cs" />
+    <Compile Include="Enum\EquipType.cs" />
+    <Compile Include="Enum\HouseType.cs" />
+    <Compile Include="Table\Article.cs" />
     <Compile Include="Base\Biont.cs" />
     <Compile Include="Base\Cell.cs" />
+    <Compile Include="Base\Equip.cs" />
     <Compile Include="Base\Nature.cs" />
+    <Compile Include="Enum\Explore.cs" />
+    <Compile Include="Enum\Terrain.cs" />
+    <Compile Include="Table\ArticleRelation.cs" />
+    <Compile Include="Table\DefenseEquip.cs" />
+    <Compile Include="Table\House.cs" />
+    <Compile Include="Table\InfightingEquip.cs" />
+    <Compile Include="Table\Making.cs" />
+    <Compile Include="Table\Material.cs" />
     <Compile Include="Table\Monster.cs" />
-    <Compile Include="Table\MonsterAndScene.cs" />
-    <Compile Include="Table\Protagonist.cs" />
-    <Compile Include="Table\Race.cs" />
+    <Compile Include="Table\RemoteEquip.cs" />
     <Compile Include="Table\Role.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Table\Scene.cs" />
+    <Compile Include="Table\Town.cs" />
     <Compile Include="Util\DataFieldAttribute.cs" />
     <Compile Include="Util\DataTableAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram3.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
